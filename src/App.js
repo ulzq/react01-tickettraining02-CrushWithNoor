@@ -96,16 +96,10 @@ class App extends React.Component {
     //   if not the new player will be set
     //   this works because {this.state.currentPlayer} will evaluate to null
     //   in wich case lazy evaluation will continue with the expression
-    //   and newPlayerwill be chosen.
-    this.state.currentPlayer = this.state.currentPlayer || newPlayer;
-
-    /* this.setState({
-      // eslint-disable-next-line no-undef
-      currentPlayer: this.state / currentPlayer || newPlayer
-    }); */
-    // because we mutated the state directly (mainly because of the array)
-    // we need to force an update in order for react to render anew.
-    this.forceUpdate();
+    //   and newPlayer will be chosen.
+    this.setState({
+      currentPlayer: this.state.currentPlayer || newPlayer
+    });
   };
 
   /*
@@ -115,29 +109,44 @@ class App extends React.Component {
   turnLeft = () => {
     if (this.state.controlsBlocked) return;
     if (!this.state.currentPlayer) return;
-    this.state.currentPlayer.angle -= 5;
-    this.forceUpdate();
+    let p = this.state.currentPlayer;
+    p.angle -= 5;
+    this.setState({
+      currentPlayer: p
+    });
   };
 
   turnRight = () => {
     if (this.state.controlsBlocked) return;
     if (!this.state.currentPlayer) return;
-    this.state.currentPlayer.angle += 5;
-    this.forceUpdate();
+    //this.state.currentPlayer.angle += 5;
+    let p = this.state.currentPlayer;
+    p.angle += 5;
+    this.setState({
+      currentPlayer: p
+    });
   };
 
   lessPower = () => {
     if (this.state.controlsBlocked) return;
     if (!this.state.currentPlayer) return;
-    this.state.currentPlayer.power -= 5;
-    this.forceUpdate();
+    //this.state.currentPlayer.power -= 5;
+    let p = this.state.currentPlayer;
+    p.power -= 5;
+    this.setState({
+      currentPlayer: p
+    });
   };
 
   morePower = () => {
     if (this.state.controlsBlocked) return;
     if (!this.state.currentPlayer) return;
-    this.state.currentPlayer.power += 5;
-    this.forceUpdate();
+    //this.state.currentPlayer.power += 5;
+    let p = this.state.currentPlayer;
+    p.power += 5;
+    this.setState({
+      currentPlayer: p
+    });
   };
 
   /*
